@@ -1,0 +1,130 @@
+@{
+    Layout = null;
+}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <title>DotNet Group Chat</title>
+    <style type="text/css">
+       .group {
+          padding: 13px;
+          border-radius: 12px;
+          background: rgb(57, 125, 192);
+          margin: 5px 0px;
+          font-weight: bolder;
+          color: black;
+          cursor: pointer;
+       }
+      .chat_body {
+        height: 520px;
+        overflow: scroll;
+      }
+      
+      .less_padding {
+        padding: 2px;
+      }
+      .chat_message {
+          padding: 13px;
+          border-radius: 12px;
+          width: 50%;
+          background: #85C1E9;
+          margin: 6px 4px;
+      }
+      .chat_main {
+        background-color: #957bbe; 
+        height: 520; 
+        padding: 0px;
+      }
+      .group_main {
+         background-color: #85C1E9;
+      }
+    </style>
+  </head>
+  <body>
+    <h3 class="text-center">Welcome</h3>
+        <div class="container" style="background-color: grey;">
+              <div class="row">
+                <div class="col-md-2 less_padding">
+                  <div class="col group_main">
+                       <div class="text-center"> Groups </div>
+                       <div clsss="row" style="height: 500px;overflow: scroll;" id="groups">
+                         @foreach (var group in (dynamic)ViewData["UserGroups"]) {
+                                <div class="group" data-group_id="@group.GroupId"> @group.GroupName </div> 
+                          }
+                      </div>
+
+                      <div class="text-center"> 
+                          <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#CreateNewGroup">Add Group</button>
+                      </div>
+                  </div>
+                </div>
+                <div class="col-md-10 less_padding">
+                  <div class="col-md-12 chat_main">
+                        <input type="hidden" value="" id="currentGroup">
+                       <div class="chat_body">
+                              <!-- <div class="chat_message float-right">Hello, </div> -->
+                       </div>
+                      <div class="row container" style="margin-left: 3px;">
+                        <div class="col-md-9 col-sm-9 less_padding">
+                            <textarea class="form-control" rows="1" id="Message"></textarea>   
+                        </div>
+                        <div class="col-md-3 col-sm-3 less_padding">
+                              <button type="submit" class="btn btn-primary" style=" position: absolute;" id="SendMessage">Send Message</button>
+                        </div>
+                      </div>
+                  </div>
+               </div>
+           </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="CreateNewGroup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+             <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Add New Group</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+             </div>
+            <div class="modal-body">
+                <form id="CreateGroupForm">
+                    <div class="form-group">
+                        <label for="GroupName">Group Name</label>
+                        <input type="text" class="form-control" name="GroupName" id="GroupName" aria-describedby="emailHelp" placeholder="Group Name">
+                    </div>
+                    <label for="User">Add Users <br></label> <br>
+                    <div class="row">
+                         <!-- List users here -->
+                         @foreach (var user in (dynamic)ViewData["Users"]) {
+                                <div class="col-4"> 
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" value="@user.UserName" name="UserName[]">
+                                        <label class="form-check-label" for="Users">@user.UserName</label>
+                                    </div>
+                                </div> 
+                          }
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="CreateNewGroupButton">Create Group</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+    <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+  </body>
+</html>

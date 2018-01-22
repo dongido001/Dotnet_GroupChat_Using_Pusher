@@ -1,0 +1,12 @@
+/Users/dongido/Projects/GroupChat/bin/Debug/netcoreapp2.0/app.db
+/Users/dongido/Projects/GroupChat/bin/Debug/netcoreapp2.0/GroupChat.deps.json
+/Users/dongido/Projects/GroupChat/bin/Debug/netcoreapp2.0/GroupChat.runtimeconfig.json
+/Users/dongido/Projects/GroupChat/bin/Debug/netcoreapp2.0/GroupChat.runtimeconfig.dev.json
+/Users/dongido/Projects/GroupChat/bin/Debug/netcoreapp2.0/GroupChat.dll
+/Users/dongido/Projects/GroupChat/bin/Debug/netcoreapp2.0/GroupChat.pdb
+/Users/dongido/Projects/GroupChat/obj/Debug/netcoreapp2.0/GroupChat.csproj.CoreCompileInputs.cache
+/Users/dongido/Projects/GroupChat/obj/Debug/netcoreapp2.0/UserSecretsAssemblyInfo.cs
+/Users/dongido/Projects/GroupChat/obj/Debug/netcoreapp2.0/GroupChat.AssemblyInfoInputs.cache
+/Users/dongido/Projects/GroupChat/obj/Debug/netcoreapp2.0/GroupChat.AssemblyInfo.cs
+/Users/dongido/Projects/GroupChat/obj/Debug/netcoreapp2.0/GroupChat.dll
+/Users/dongido/Projects/GroupChat/obj/Debug/netcoreapp2.0/GroupChat.pdb
