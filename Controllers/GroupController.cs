@@ -73,9 +73,9 @@ namespace GroupChat.Controllers
                 Encrypted = true
             };
             var pusher = new Pusher(
-                "PUSHER_APP_ID",
-                "PUSHER_APP_KEY",
-                "PUSHER_APP_SECRET",
+                    "PUSHER_APP_ID",
+                    "PUSHER_APP_KEY",
+                    "PUSHER_APP_SECRET",
             options);
             var result = await pusher.TriggerAsync(
                 "group_chat", //channel name

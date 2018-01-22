@@ -21,22 +21,43 @@ namespace GroupChat.Controllers
         }
 
         [HttpPost]
-        public IActionResult ChannelAuth(string channel_name, string socket_id)
+        public JsonResult ChannelAuth(string channel_name, string socket_id)
         {
+            int group_id;
 
-               if( !User.Identity.IsAuthenticated ) {
-                
-                  return new ContentResult { Content = "Access forbidden", ContentType = "application/json" };
-               }
+            if( !User.Identity.IsAuthenticated) {
+            
+                return Json( new { Content = "Access forbidden" } );
+            }
+
+            try
+            {
+                 group_id = Int32.Parse(channel_name.Replace("private-", ""));
+            }
+            catch (FormatException e)
+            {
+                return Json( new  { Content = e.Message } );
+            }
+
+            var IsInChannel = _context.UserGroup.Where(
+                                            gb => gb.GroupId == group_id 
+                                            && gb.UserName == _userManager.GetUserName(User) 
+                                       ).Count();
+
+            if( IsInChannel > 0){
 
                 var pusher = new Pusher(
                     "PUSHER_APP_ID",
                     "PUSHER_APP_KEY",
                     "PUSHER_APP_SECRET"
                 );
-              
-               var auth = pusher.Authenticate( channel_name, socket_id );
-               return new ContentResult { Content = auth.ToJson(), ContentType = "application/json" };
+                
+                var auth = pusher.Authenticate( channel_name, socket_id ).ToJson();
+                return Json( new { Content = auth } );
+            }
+
+           return Json ( new { Content = "Access forbidden" } );
+
         }
 
     }
