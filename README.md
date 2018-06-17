@@ -1,6 +1,6 @@
 # GROUP CHAT APP USING .NET CORE
 
-This is a demo application showing how to build an activity feed using ASP.NET Core MVC and Pusher. You can read the tutorial on how it was built [here](https://pusher.com/tutorials/group-chat-net)
+This is a demo application showing how to build a Group chat application using ASP.NET Core MVC and Pusher. You can read the tutorial on how it was built [here](https://pusher.com/tutorials/group-chat-net)
 
 ## Getting Started
 
